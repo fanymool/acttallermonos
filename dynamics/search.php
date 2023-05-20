@@ -37,7 +37,7 @@ for ($i = 0; $i < 220; $i++) {
 
 switch ($modo) {
     case 'normal': 
-        $palabras_aleatorias .= $busqueda;
+        $palabras_aleatorias .= $busqueda. $palabras_aleatorias;
 
 
 
