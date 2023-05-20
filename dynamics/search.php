@@ -58,14 +58,14 @@ $palabras_aleatorias = explode(' ', $palabras_aleatorias);
 
 foreach ($palabras_aleatorias as $palabra_aleatoria) {
     if (in_array($palabra_aleatoria, $busqueda)) {
-        echo "<span class='rojo'>{$palabra_aleatoria}</span> ";
+        echo "<span class='rojo'>$palabra_aleatoria</span> ";
     } else {
-        echo "{$palabra_aleatoria} ";
+        echo "$palabra_aleatoria ";
     }
 }
 
 echo "</td></tr></tbody></table>";
 
-echo "<p>La fecha de consulta de este libro fue {$fecha_actual} en la zona horaria {$zona_horaria}</p>";
-echo "<p>Fecha de creación del libro: {$fecha_libro}</p>";
+echo "<p>La fecha de consulta de este libro fue $fecha_actual en la zona horaria $zona_horaria</p>";
+echo "<p>Fecha de creación del libro: $fecha_libro</p>";
 ?>
