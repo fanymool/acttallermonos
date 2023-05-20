@@ -28,16 +28,20 @@ echo "<table>
 <tbody>
     <tr>
         <td>";
-
+//loremipsumdolorsitametconsectetur
 $palabras_aleatorias = "";
 for ($i = 0; $i < 220; $i++) {
-    $palabra_aleatoria = substr(str_shuffle("loremipsumdolorsitametconsectetur"), 0, rand(4, 15));
+    $palabra_aleatoria = substr(str_shuffle("abcdefghijklmnoprstquvwxyz123456789+-#$%&="), 0, rand(4, 15));
     $palabras_aleatorias .= $palabra_aleatoria . ' ';
 }
 
 switch ($modo) {
-    case 'normal':
+    case 'normal': 
         $palabras_aleatorias .= $busqueda;
+
+
+
+
         break;
     case 'palabras':
         $palabras = explode(' ', $busqueda);
