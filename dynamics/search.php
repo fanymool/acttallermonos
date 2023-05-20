@@ -31,16 +31,13 @@ echo "<table>
 //loremipsumdolorsitametconsectetur
 $palabras_aleatorias = "";
 for ($i = 0; $i < 220; $i++) {
-    $palabra_aleatoria = substr(str_shuffle("abcdefghijklmnoprstquvwxyz123456789+-#$%&="), 0, rand(4, 15));
+    $palabra_aleatoria = substr(str_shuffle("abcdefghijklmnoprstquvwxyz0123456789ABCEFGHIJKLMNOPQRSTUVWXYZ"), 0, rand(4, 15));
     $palabras_aleatorias .= $palabra_aleatoria . ' ';
 }
 
 switch ($modo) {
     case 'normal': 
-        $palabras_aleatorias .= $busqueda. $palabras_aleatorias;
-
-
-
+        $palabras_aleatorias .= $busqueda.$palabras_aleatorias;
 
         break;
     case 'palabras':
