@@ -1,7 +1,7 @@
 <?php
 $busqueda = $_POST['busqueda'];
 $modo = $_POST['modo'];
-$zona_horaria = $_POST['zona_horaria'];
+$zona_horaria = $_POST['zonaHoraria'];
 date_default_timezone_set($zona_horaria);
 $fecha_actual = date('m/d/Y h:i:s a', time());
 $fecha_libro = date('m/d/Y', strtotime('-' . rand(1, 100) . ' years'));
