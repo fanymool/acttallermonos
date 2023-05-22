@@ -1,66 +1,73 @@
-<?php
-$busqueda = $_POST['busqueda'];
+<?php $busqueda = $_POST['busqueda'];
+echo "
+<head>
+    <meta charset='UTF-8'>
+    <title>Resultados de la búsqueda: ".$busqueda."</title>
+    <link rel='stylesheet' type='text/css' href='../statics/style.css'>
+</head>";
+
 $modo = $_POST['modo'];
 $zona_horaria = $_POST['zonaHoraria'];
 date_default_timezone_set($zona_horaria);
 $fecha_actual = date('m/d/Y h:i:s a', time());
 $fecha_libro = date('m/d/Y', strtotime('-' . rand(1, 100) . ' years'));
-
-echo "<style>
-table {
-  width: 100%;
-  border-collapse: collapse;
-}
-table, th, td {
-  border: 1px solid black;
-}
-.rojo {
-    color: red;
-}
-</style>";
-
+$id_libro = substr(str_shuffle("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"), 0, 10);
 echo "<table>
 <thead>
     <tr>
-        <th>ID del libro</th>
+        <th>ID del libro: $id_libro</th>
     </tr>
 </thead>
 <tbody>
     <tr>
         <td>";
 
-$palabras_aleatorias = "";
+$palabras_aleatorias = array();
 for ($i = 0; $i < 220; $i++) {
-    $palabra_aleatoria = substr(str_shuffle("loremipsumdolorsitametconsectetur"), 0, rand(4, 15));
-    $palabras_aleatorias .= $palabra_aleatoria . ' ';
+    $palabra_aleatoria = substr(str_shuffle("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789"), 0, rand(4, 15));
+    $palabras_aleatorias[] = $palabra_aleatoria;
 }
 
+$busqueda_array = explode(' ', $busqueda);
+$a=0;
 switch ($modo) {
     case 'normal':
-        $palabras_aleatorias .= $busqueda;
+        $num = rand(0, 219);
+        for ($a = 0; $a < $num; $a++) {
+            echo $palabras_aleatorias[$a] . " ";
+        }
+        echo "<span class='rojo'>$busqueda</span> ";
+        for ($a = $num; $a < 219; $a++) {
+            echo $palabras_aleatorias[$a] . " ";
+        }
         break;
+
     case 'palabras':
-        $palabras = explode(' ', $busqueda);
-        shuffle($palabras);
-        $busqueda = implode(' ', $palabras);
-        $palabras_aleatorias .= $busqueda;
+        shuffle($busqueda_array);
+        $num = rand(0, 219);
+        for ($a = 0; $a < $num; $a++) {
+            echo $palabras_aleatorias[$a] . " ";
+        }
+        echo "<span class='rojo'>$busqueda</span> ";
+        for ($a = $num; $a < 219; $a++) {
+            echo $palabras_aleatorias[$a] . " ";
+        }
         break;
     case 'desorden':
-        $palabras = explode(' ', $busqueda);
-        shuffle($palabras);
-        $busqueda = implode(' ', $palabras);
-        $palabras_aleatorias .= $busqueda;
+        shuffle($busqueda_array);
+        foreach ($busqueda_array as $palabra) {
+            $palabras_aleatorias[] = $palabra;
+        }
         break;
 }
 
-$busqueda = explode(' ', $busqueda);
-$palabras_aleatorias = explode(' ', $palabras_aleatorias);
+shuffle($palabras_aleatorias);
 
 foreach ($palabras_aleatorias as $palabra_aleatoria) {
-    if (in_array($palabra_aleatoria, $busqueda)) {
+    if (strpos($busqueda, $palabra_aleatoria) !== false) {
         echo "<span class='rojo'>$palabra_aleatoria</span> ";
     } else {
-        echo "$palabra_aleatoria ";
+        echo "{$palabra_aleatoria} ";
     }
 }
 
