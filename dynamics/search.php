@@ -42,17 +42,20 @@ switch ($modo) {
         }
         break;
 
+
     case 'palabras':
         shuffle($busqueda_array);
         $num = rand(0, 219);
         for ($a = 0; $a < $num; $a++) {
             echo $palabras_aleatorias[$a] . " ";
         }
-        echo "<span class='rojo'>$busqueda</span> ";
+        echo "<span class='rojo'>" . implode(" ", $busqueda_array) . "</span> ";
         for ($a = $num; $a < 219; $a++) {
             echo $palabras_aleatorias[$a] . " ";
         }
         break;
+
+
     case 'desorden':
         shuffle($busqueda_array);
         foreach ($busqueda_array as $palabra) {
