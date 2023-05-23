@@ -5,7 +5,7 @@ body {
     width: 100%;
     overflow: auto;
     box-sizing: border-box;
-    font-family: "JetBrains Mono Medium", sans-serif;
+    font-family: "AppleGothic", sans-serif;
 }
 
 body::before {
