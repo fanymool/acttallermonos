@@ -37,6 +37,7 @@ $busqueda_array = explode(' ', $busqueda);
 $a=0;
 switch ($modo) {
     case 'normal':
+        $a=0;
         $num = rand(0, 249);
         for ($a = 0; $a < $num; $a++) {
             echo $palabras_aleatorias[$a] . " ";
@@ -47,6 +48,7 @@ switch ($modo) {
         }
         break;
     case 'palabras':
+        $a=0;
         shuffle($busqueda_array);
         $num = rand(0, 249);
         for ($a = 0; $a < $num; $a++) {
@@ -58,13 +60,14 @@ switch ($modo) {
         }
         break;
     case 'desorden':
+        $a=0;
         shuffle($busqueda_array);
         foreach ($busqueda_array as $palabra) {
             $palabras_aleatorias[] = $palabra;
         }
         break;
     case 'inverso':
-        // Dividir la cadena en palabras, invertir el orden de las palabras y los caracteres de cada palabra
+        $a=0;
         $busqueda_array = explode(' ', $busqueda);
         $busqueda_array = array_reverse($busqueda_array);
         foreach ($busqueda_array as $index => $palabra) {
